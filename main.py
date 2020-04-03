@@ -37,5 +37,5 @@ if __name__=='__main__':
     for i, image in enumerate(images):
         # plt.figure()
         plt.imshow(image)
-        plt.title("Predicted: "+predicted_names[i]+" with "+str(pred_proba[0][i])+" accuracy.")
+        plt.title("Predicted: "+predicted_names[i]+" with "+str(round(pred_proba[i][pred_test[i]]*100, 2))+"% confidence.")
         plt.show()

@@ -4,6 +4,8 @@ This is a face recognition model aimed at classifying your favourite Kpop singer
 
 Uses a FaceNet + SVM model to train and classify faces.
 
+![Dahyun](samples/dahyun.png)
+
 ## Requirements
 
 - Keras 2.3.1 ( No need to have a GPU )
@@ -12,13 +14,13 @@ Uses a FaceNet + SVM model to train and classify faces.
 - numpy
 - OpenCV
 
-Install the above (preferebly in a conda environment) and download the data.
+Install the above (preferably in a conda environment) and download the data.
 
 Download the FaceNet model from [here](https://drive.google.com/drive/folders/1pwQ3H4aJ8a6yyJHZkTwtjcL4wYWQb7bn), and place it inside the model folder.
 
 ## Data
 
-You can use your own dataset, where each person should have at least 10 images.
+You can use your own dataset, where each person should have at least 10-15 images.
 
 The directory structure should look like this
 
@@ -38,3 +40,9 @@ Now run process.py, which will crop the faces and put them in the processed_data
 Once the data has been prepared, download any picture and put it under the processed_data/test folder. Run main.py with 'python main.py'.
 
 Cheers!
+
+## Samples
+
+![Seulgi](samples/seulgi.png)
+![Lisa](samples/lisa.png)
+![Umji](samples/umji.png)
