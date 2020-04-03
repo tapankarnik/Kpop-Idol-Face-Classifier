@@ -1,0 +1,49 @@
+import os
+import numpy as np
+
+from load_data import load_dataset
+from embedding import get_embedded_data
+
+from sklearn.preprocessing import Normalizer, LabelEncoder
+from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score
+
+def normalize(trainX, testX):
+    norm_encoder = Normalizer(norm='l2')
+    trainX = norm_encoder.transform(trainX)
+    testX = norm_encoder.transform(testX)
+    return trainX, testX
+
+def get_svm_model(trainX, trainy):
+
+    model = SVC(kernel='linear', probability=True)
+    model.fit(trainX, trainy)
+    return model
+
+if __name__=='__main__':
+    input_dir = 'data'
+    train_dir = os.path.join(input_dir,'processed_data', 'train')
+    validation_dir = os.path.join(input_dir,'processed_data', 'validation')
+
+    trainX, trainy = load_dataset(train_dir)
+    testX, testy = load_dataset(validation_dir)
+
+    trainX, testX = get_embedded_data(trainX, testX)
+
+    trainX, cropped_images = normalize(trainX, testX)
+    
+    label_encode = LabelEncoder()
+    label_encode.fit(trainy)
+    trainy = label_encode.transform(trainy)
+    testy = label_encode.transform(testy)
+
+    model = get_svm_model(trainX, trainy)
+
+    pred_train = model.predict(trainX)
+    pred_test = model.predict(testX)
+    score_train = accuracy_score(trainy, pred_train)
+    score_test = accuracy_score(testy, pred_test)
+
+    print("Accuracy\nTrain : ",score_train,"\n","Test : ", score_test)
+
+    
