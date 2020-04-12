@@ -11,9 +11,7 @@ def get_embedding(model, face):
     prediction = model.predict(sample)
     return prediction[0]
 
-def get_embedded_data(trainX, testX):
-
-    model = load_model(os.path.join('model','facenet_keras.h5'))
+def get_embedded_data(model, trainX):
 
     newTrainX = list()
     for face in trainX:
@@ -21,12 +19,7 @@ def get_embedded_data(trainX, testX):
         newTrainX.append(embedding)
     newTrainX = np.asarray(newTrainX)
 
-    newTestX = list()
-    for face in testX:
-        embedding = get_embedding(model, face)
-        newTestX.append(embedding)
-    newTestX = np.asarray(newTestX)
-    return newTrainX, newTestX
+    return newTrainX
 
 if __name__=='__main__':
     input_dir = 'data'
