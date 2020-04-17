@@ -24,8 +24,7 @@ def detect_face(image):
         cropped_image = cv2.resize(cropped_image, (160, 160))
         return cropped_image
     else:
-        print("Not 1 face!")
-        return None
+        raise Exception("No faces found")
 
 def crop_image(image, x1, y1, x2, y2):
     cropped_image = image[y1:y2, x1:x2, :]

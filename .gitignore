@@ -3,3 +3,4 @@ __pycache__
 *.sav
 *.npy
 .vscode
+data/raw_data/*

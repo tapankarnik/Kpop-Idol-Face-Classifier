@@ -1,37 +1,38 @@
 import os
+import numpy as np
 from load_data import load_images, load_dataset
 from process_data import detect_face
 from embedding import get_embedded_data
-from classify import get_svm_model, normalize
+from train import get_svm_model, normalize
 
+from keras.models import load_model
 from sklearn.preprocessing import LabelEncoder
 
 import matplotlib.pyplot as plt
+import joblib
 
 
 if __name__=='__main__':
     input_dir = os.path.join('data', 'processed_data','test')
-    train_dir = os.path.join('data', 'processed_data','train')
 
     images = load_images(input_dir)
     cropped_images = list()
 
     for i in range(len(images)):
         cropped_images.append(detect_face(images[i]))
-    trainX, trainy = load_dataset(train_dir)
-    
-    trainX, cropped_images = get_embedded_data(trainX, cropped_images)
 
-    trainX, cropped_images = normalize(trainX, cropped_images)
-    label_encode = LabelEncoder()
-    label_encode.fit(trainy)
-    trainy = label_encode.transform(trainy)
+    face_model = load_model(os.path.join('model', 'facenet_keras.h5'))
+    cropped_images = get_embedded_data(face_model, cropped_images)
 
-    model = get_svm_model(trainX, trainy)
+    cropped_images = normalize(cropped_images)
+
+    model = joblib.load(os.path.join('model', 'svm_model.sav'))
 
     pred_test = model.predict(cropped_images)
     pred_proba = model.predict_proba(cropped_images)
 
+    label_encode = LabelEncoder()
+    label_encode.classes_ = np.load(os.path.join('model','classes.npy'))
     predicted_names = label_encode.inverse_transform(pred_test)
     
     for i, image in enumerate(images):
