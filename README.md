@@ -35,7 +35,7 @@ The directory structure should look like this
             - pic1.jpg
             - pic2.jpg
 
-Now run process.py, which will crop the faces and put them in the 'play' folder.
+Now run process.py, which will crop the faces and put them in the 'data/processed_data/train' folder.
 
 ## Usage
 To use the model as it is, put your images in the 'play' folder and run 'python main.py'.
