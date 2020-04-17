@@ -13,7 +13,7 @@ import joblib
 
 
 if __name__=='__main__':
-    input_dir = os.path.join('data', 'processed_data','test')
+    input_dir = 'play'
 
     images = load_images(input_dir)
     cropped_images = list()

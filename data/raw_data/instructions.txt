@@ -1,0 +1,8 @@
+To add support for another artist, make a folder titled with the name and keep at least 10-15 photos with the face clearly visible.
+Fienames don't matter.
+E.g.
+data
+ -> raw_data
+    -> Dahyun
+        -> pic1.jpg
+        -> pic2.jpg
