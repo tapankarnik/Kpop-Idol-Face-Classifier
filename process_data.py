@@ -38,18 +38,19 @@ if __name__ == '__main__':
     detector = dlib.get_frontal_face_detector()
     if not os.path.exists(output_dir):
             os.makedirs(output_dir)
-    class_list = os.listdir(input_dir)
+    class_list = [f for f in os.listdir(input_dir) if os.path.isdir(os.path.join(input_dir,f))]
     for class_name in class_list:
         if not os.path.exists(os.path.join(output_dir,class_name)):
             os.makedirs(os.path.join(output_dir,class_name))
 
     for class_name in class_list:
-        filenames = [f for f in os.listdir(os.path.join(input_dir, class_name))]
-        
+        filenames = [f for f in os.listdir(os.path.join(input_dir, class_name))] 
         # predictor = dlib.shape_predictor('./shape_predictor_68_face_landmarks.dat') 
 
         for filename in filenames:
             print("Loaded ", filename)
+            if os.path.exists(os.path.join(output_dir, class_name, filename)):
+                continue
             image = cv2.imread(os.path.join(input_dir, class_name, filename))
             try:
                 cropped_image = detect_face(image)

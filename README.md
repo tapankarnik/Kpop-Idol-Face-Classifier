@@ -4,7 +4,7 @@ This is a face recognition model aimed at classifying your favourite Kpop singer
 
 Uses a FaceNet + SVM model to train and classify faces.
 
-The model currently supports recognizing Chaeyong, Chorong, Dahyun, Eunha, Irene, Jihyo, Lisa, Naeun, Nayeon, Sana, Seulgi, Umji, Yeji and Yuju.
+The model currently supports recognizing Arin, Chaeyong, Chorong, Dahyun, Eunha, Irene, Jihyo, Lisa, Naeun, Nayeon, Sana, Seulgi, Umji, Yeji and Yuju.
 
 ,![Dahyun](samples/dahyun.png)
 
